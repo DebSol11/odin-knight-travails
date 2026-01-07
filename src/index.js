@@ -30,102 +30,33 @@ import * as generalFunctions from "./generalFunctions";
 // // 0, 1, 2, 3, 4, 5, 6, 7 (= j) start 1
 
 function knightMoves(start) {
-  let moves = [];
-  // check for down left
-  if (start[0] - 2 >= 0 && start[1] - 1 >= 0) {
-    validMoves.push([start[0] - 2, start[1] - 1]);
-  }
-  // check for left down
-  if (start[0] - 1 >= 0 && start[1] - 2 >= 0) {
-    validMoves.push([start[0] - 1, start[1] - 2]);
-  }
-  // check for left up
-  if (start[0] < 7 && start[1] - 2 >= 0) {
-    validMoves.push([start[0] - 2, start[1] + 1]);
-  }
-  // check for up left
-  if (start[0] < 6 && start[1] - 1 >= 0) {
-    validMoves.push([start[0] + 1, start[1] - 2]);
-  }
-  // check for up right
-  if (start[0] < 6 && start[1] < 7) {
-    validMoves.push([start[0] - 1, start[1] + 2]);
-  }
-  // check for right up
-  if (start[0] < 7 && start[1] < 6) {
-    validMoves.push([start[0] + 2, start[1] - 1]);
-  }
-  // check for right down
-  if (start[0] - 1 >= 0 && start[1] < 6) {
-    validMoves.push([start[0] + 1, start[1] + 2]);
-  }
-  // check for down right
-  if (start[0] - 2 >= 0 && start[1] < 7) {
-    validMoves.push([start[0] + 2, start[1] + 1]);
-  }
-
-
-  function isValidMove(x,y) {
-    return x >= 0 && x <= 7 && y >= 0 && y <= 7;
-  }
-  // pseudocode
-  // for every -1 in possibleMoves array change for a 1
-  // if (start[0] === 1 && start[1] === 1) {
-  //   possibleMoves = [
-  //     [3, 0],
-  //     [3, 2],
-  //     [2, 3],
-  //     [0, 3],
-  //   ];
-  // current output:
-  //[2, -1]
-  //[0, 3]
-  //[3, 0]
-  //[2, 3]
-  // }
-  // if (start[0] === 0 && start[1] === 0) {
-  //   possibleMoves = [
-  //     [2, 1],
-  //     [1, 2],
-  //   ];
-  // }
-  //  else if (start[0] === 2 && start[1] === 2) {
-  //   return possibleMoves = [
-  //     [start[0]-2, start[1]-1],
-  //     [start[0]-1, start[1]-2],
-  //     [start[0]-2, start[1]+1],
-  //     [start[0]+1, start[1]-2],
-  //     [start[0]-1, start[1]+2],
-  //     [start[0]+2, start[1]-1],
-  //     [start[0]+1, start[1]+2],
-  //     [start[0]+2, start[1]+1],
-  //   ];
-  // possibleMoves = [
-  //   [0, 1],
-  //   [1, 0],
-  //   [0, 3],
-  //   [3, 0],
-  //   [1, 4],
-  //   [4, 1],
-  //   [3, 4],
-  //   [4, 3],
-  // ];
-  // } else if (start[0] === 1 && start[1] === 0) {
-  //   possibleMoves = [
-  //     [2, 0],
-  //     [2, 2],
-  //     [1, 3],
-  //   ];
-  // } else if (start[0] === 1 && start[2] === 0) {
-  //   possibleMoves = [
-  //     [1, 0],
-  //     [2, 1],
-  //     [2, 3],
-  //     [1, 4],
-  //   ];
-  // }
-  return possibleMoves;
+  let moves = [
+    // check for down left
+    [start[0] - 2, start[1] - 1],
+    // check for left down
+    [start[0] - 1, start[1] - 2],
+    // check for left up
+    [start[0] - 2, start[1] + 1],
+    // check for up left
+    [start[0] + 1, start[1] - 2],
+    // check for up right
+    [start[0] - 1, start[1] + 2],
+    // check for right up
+    [start[0] + 2, start[1] - 1],
+    // check for right down
+    [start[0] + 1, start[1] + 2],
+    // check for down right
+    [start[0] + 2, start[1] + 1],
+  ];
+  return moves.filter((move) => isValidMove(move[0], move[1]));
 }
+
+function isValidMove(x, y) {
+  return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+}
+
+console.log(knightMoves([2,2]));
+
 // The knight starts on a random field e.g. at 2,2
 // we initialize a stepCounter variable to 0
 // graph as represented as adjacency list
@@ -142,4 +73,4 @@ function knightMoves(start) {
 //   "1:0": [],
 // };
 
-console.log(possibleKnightMoves([6, 1]));
+// Outputs: [[2, 3], [2, 5], [6, 3], [6, 5], [3, 2], [3, 6], [5, 2], [5, 6]]
