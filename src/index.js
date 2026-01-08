@@ -56,50 +56,53 @@ function isValidMove(x, y) {
 //   return { currentPosition, allowedMoves };
 // }
 
-function generateMoveArray(currentPosition) {
-  let moveArray = [currentPosition];
-  moveArray.push(allowedKnightMoves(currentPosition));
-  console.log(moveArray);
-  return moveArray;
+function generateMoveArrayQueue(currentPosition) {
+  let moveArrayQueue = [];
+  moveArrayQueue.push(currentPosition);
+  for (let i = 0; i < allowedKnightMoves(currentPosition).length; i++) {
+    moveArrayQueue.push(allowedKnightMoves(currentPosition)[i]);
+  }
+  return moveArrayQueue;
 }
 
 function knightMoves([x, y], [a, b]) {
   // Start position and first possible moves
-  let startPosition = [x,y];
+  let startPosition = [x, y];
   let necessaryMoves = 0;
+  let yourPath = [];
   let visitedPositions = [];
-  let currentMove = generateMoveArray(startPosition);
-  let currentQueue = currentMove;
-  console.log(currentMove[1].length);
+  let currentArrayQueue = generateMoveArrayQueue(startPosition);
+  // while (currentArrayQueue.length === 0) {
   // Check if starting position is goal position
-  if (currentMove[0][0] === a && currentMove[0][1] === b) {
-    console.log("Starting position equals goal position");
+  if (currentArrayQueue[0][0] === a && currentArrayQueue[0][1] === b) {
+    yourPath.push(currentArrayQueue[0]);
+    visitedPositions.push(currentArrayQueue[0]);
+    currentArrayQueue = [];
+    console.log(`You did it in ${necessaryMoves}, your path is: `);
+    return yourPath;
   } else {
-    visitedPositions.push(currentMove[0]);
-    // currentQueue.shift()
-    for (let i = 0; i < currentMove[1].length; i++) {
-      if (currentMove[1][i][0] === a && currentMove[1][i][1] === b) {
-        let yourPath = [currentMove[0], currentMove[1][i]];
-        necessaryMoves = 1;
-        return console.log(
-          `Awesome you did it in ${necessaryMoves} move! Your path is: [${yourPath[0]}] --> [${yourPath[1]}]`
-        );
+    necessaryMoves += 1;
+    for (let i = 0; i < currentArrayQueue.length; i++) {
+      if (currentArrayQueue[i][0] === a && currentArrayQueue[i][1] === b) {
+        yourPath.push(currentArrayQueue[i]);
+        visitedPositions.push(currentArrayQueue[i]);
+        currentArrayQueue = [];
+        console.log(`You did it in ${necessaryMoves}, your path is: `);
+        return yourPath
       } else {
-        necessaryMoves = 1;
-        visitedPositions.push(currentMove[1][i]);
+        visitedPositions.push(currentArrayQueue[i]);
+        currentArrayQueue.shift[i]
       }
     }
     console.log(visitedPositions);
   }
+  // }
 }
 
-
-
-
-
-
-function printVisitedPositions() {
-
+function notVisitedKnightMoves() {
+  // filter out the already visited positions from the moveArray for the next move.
 }
 
-knightMoves([2, 2], [5, 3]);
+console.log(generateMoveArrayQueue([2, 2]));
+
+console.log(knightMoves([2, 2], [2, 2]));
