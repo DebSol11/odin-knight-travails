@@ -84,18 +84,22 @@ function knightMoves([x, y], [a, b]) {
     necessaryMoves += 1;
     for (let i = 0; i < currentArrayQueue.length; i++) {
       if (currentArrayQueue[i][0] === a && currentArrayQueue[i][1] === b) {
+        yourPath.push(currentArrayQueue[0])
         yourPath.push(currentArrayQueue[i]);
         visitedPositions.push(currentArrayQueue[i]);
         currentArrayQueue = [];
-        console.log(`You did it in ${necessaryMoves}, your path is: `);
+        console.log(`You did it in ${necessaryMoves} move, your path is: `);
         return yourPath
       } else {
         visitedPositions.push(currentArrayQueue[i]);
-        currentArrayQueue.shift[i]
+        // currentArrayQueue.shift([i])
       }
     }
-    console.log(visitedPositions);
   }
+  console.log("Visited positions are: ")
+  console.log(visitedPositions)
+  console.log("Current array queue is: ")
+  console.log(currentArrayQueue);
   // }
 }
 
@@ -105,4 +109,4 @@ function notVisitedKnightMoves() {
 
 console.log(generateMoveArrayQueue([2, 2]));
 
-console.log(knightMoves([2, 2], [2, 2]));
+console.log(knightMoves([2, 2], [5, 3]));
