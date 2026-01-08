@@ -52,27 +52,31 @@ function isValidMove(x, y) {
 }
 
 function knightMoves(start, end) {
-    const queue = [[start, [start]]]; // Store [currentPosition, pathHistory]
-    const visited = new Set();
-    visited.add(start.toString());
+  const queue = [[start, [start]]]; // Store [currentPosition, pathHistory]
+  const visited = new Set();
+  visited.add(start.toString());
 
-    while (queue.length > 0) {
-        const [current, path] = queue.shift();
+  while (queue.length > 0) {
+    const [current, path] = queue.shift();
 
-        if (current[0] === end[0] && current[1] === end[1]) {
-            return path; // Shortest path found
-        }
-
-        const moves = allowedKnightMoves(current);
-        for (const move of moves) {
-            if (!visited.has(move.toString())) {
-                visited.add(move.toString());
-                queue.push([move, [...path, move]]);
-            }
-        }
+    // Check if target is reached
+    if (current[0] === end[0] && current[1] === end[1]) {
+      console.log(
+        `You made it in ${path.length - 1} moves! Here is your path:`
+      );
+      return path; // Shortest path found
     }
-}
 
+    // Explore neighbors
+    const moves = allowedKnightMoves(current);
+    for (const move of moves) {
+      if (!visited.has(move.toString())) {
+        visited.add(move.toString());
+        queue.push([move, [...path, move]]);
+      }
+    }
+  }
+}
 
 console.log(knightMoves([2, 2], [7, 7]));
 
@@ -98,7 +102,7 @@ console.log(knightMoves([2, 2], [7, 7]));
 //   let visitedPositions = [];
 //   let currentArrayQueue = generateMoveArrayQueue(startPosition);
 //   let previousArrayQueue = currentArrayQueue;
-  
+
 //   while (currentArrayQueue.length != []) {
 //     // Check if starting position is goal position
 //     if (currentArrayQueue == []) {
@@ -137,11 +141,8 @@ console.log(knightMoves([2, 2], [7, 7]));
 //   console.log(previousArrayQueue);
 // }
 
-
-
 // function notVisitedKnightMoves() {
 //   // filter out the already visited positions from the moveArray for the next move.
 // }
 
 // console.log(generateMoveArrayQueue([2, 2]));
-
