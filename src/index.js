@@ -1,17 +1,7 @@
 import "./styles.css";
 import * as generalFunctions from "./generalFunctions";
 
-// pseudocode;
-
-// first we add the root node to the visited list and the queue
-// we loop while the queue is not empty
-// visiting the node that was first added to the queue
-// we iterate through the adjacent(= immediately preceding or following) nodes
-// if the node has not jet been visited we add it both to the visited list and the queue
-
-// // breadthFirstSearch (BFS)
-// // Graph Example
-// // Game board example
+// // Game board example for imagination purpose
 // [
 //   [0, 0, 0, 0, 0, 0, 0, 0], // 7
 //   [0, 0, 0, 0, 0, 0, 0, 0], // 6
@@ -59,6 +49,7 @@ function knightMoves(start, end) {
   while (queue.length > 0) {
     const [current, path] = queue.shift();
 
+    
     // Check if target is reached
     if (current[0] === end[0] && current[1] === end[1]) {
       console.log(
@@ -79,70 +70,3 @@ function knightMoves(start, end) {
 }
 
 console.log(knightMoves([2, 2], [7, 7]));
-
-// function generateNode(currentPosition) {
-//   let allowedMoves = allowedKnightMoves(currentPosition);
-//   return { currentPosition, allowedMoves };
-// }
-
-// function generateMoveArrayQueue(currentPosition) {
-//   let moveArrayQueue = [];
-//   moveArrayQueue.push(currentPosition);
-//   for (let i = 0; i < allowedKnightMoves(currentPosition).length; i++) {
-//     moveArrayQueue.push(allowedKnightMoves(currentPosition)[i]);
-//   }
-//   return moveArrayQueue;
-// }
-
-// function knightMoves([x, y], [a, b]) {
-//   // Start position and first possible moves
-//   let startPosition = [x, y];
-//   let necessaryMoves = 0;
-//   let yourPath = [];
-//   let visitedPositions = [];
-//   let currentArrayQueue = generateMoveArrayQueue(startPosition);
-//   let previousArrayQueue = currentArrayQueue;
-
-//   while (currentArrayQueue.length != []) {
-//     // Check if starting position is goal position
-//     if (currentArrayQueue == []) {
-//     }
-//     if (currentArrayQueue[0][0] === a && currentArrayQueue[0][1] === b) {
-//       yourPath.push(startPosition);
-//       yourPath.push(currentArrayQueue[0]);
-//       visitedPositions.push(currentArrayQueue[0]);
-//       currentArrayQueue = [];
-//       console.log(`You did it in ${yourPath.length - 1} moves, your path is: `);
-//       return yourPath;
-//     } else {
-//       visitedPositions.push(currentArrayQueue[0]);
-//       currentArrayQueue.shift();
-//       // return knightMoves([currentArrayQueue[0]],[a,b])
-//       // for (let i = 0; i < currentArrayQueueInitialLength; i++) {
-//       //   if (currentArrayQueue[i][0] === a && currentArrayQueue[i][1] === b) {
-//       //     yourPath.push(currentArrayQueue[0]);
-//       //     yourPath.push(currentArrayQueue[i]);
-//       //     visitedPositions.push(currentArrayQueue[i]);
-//       //     currentArrayQueue = [];
-//       //     console.log(`You did it in ${necessaryMoves} move, your path is: `);
-//       //     return yourPath;
-//       //   } else {
-//       //     visitedPositions.push(currentArrayQueue[i]);
-//       //     //currentArrayQueue.shift()
-//       //   }
-//       // }
-//     }
-//   }
-
-//   console.log("Visited positions are: ");
-//   console.log(visitedPositions);
-//   console.log("Current array queue is: ");
-//   console.log(currentArrayQueue);
-//   console.log(previousArrayQueue);
-// }
-
-// function notVisitedKnightMoves() {
-//   // filter out the already visited positions from the moveArray for the next move.
-// }
-
-// console.log(generateMoveArrayQueue([2, 2]));
