@@ -1,5 +1,4 @@
 import "./styles.css";
-import * as generalFunctions from "./generalFunctions";
 
 // // Game board example for imagination purpose
 // [
